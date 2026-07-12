@@ -81,23 +81,16 @@ function GaugeIcon() {
 }
 
 // ── Status helpers ─────────────────────────────────────────────────────────
-const VEHICLE_STATUS_COLORS: Record<VehicleStatus, { bg: string; text: string; ring: string }> = {
-  Available:  { bg: "bg-emerald-500/15", text: "text-emerald-400", ring: "ring-emerald-500/30" },
-  "On Trip":  { bg: "bg-cyan-500/15",    text: "text-cyan-400",    ring: "ring-cyan-500/30"    },
-  "In Shop":  { bg: "bg-amber-500/15",   text: "text-amber-400",   ring: "ring-amber-500/30"   },
-  Retired:    { bg: "bg-slate-500/15",   text: "text-slate-400",   ring: "ring-slate-500/30"   },
-};
-
 const TRIP_STATUS_COLORS: Record<TripStatus, { bg: string; text: string; ring: string }> = {
-  Dispatched: { bg: "bg-cyan-500/15",    text: "text-cyan-400",    ring: "ring-cyan-500/30"    },
-  Draft:      { bg: "bg-slate-500/15",   text: "text-slate-400",   ring: "ring-slate-500/30"   },
-  Completed:  { bg: "bg-emerald-500/15", text: "text-emerald-400", ring: "ring-emerald-500/30" },
-  Cancelled:  { bg: "bg-red-500/15",     text: "text-red-400",     ring: "ring-red-500/30"     },
+  Dispatched: { bg: "bg-[var(--icon-bg-cyan)]",    text: "text-[var(--icon-text-cyan)]",    ring: "ring-[var(--icon-bg-cyan)]"    },
+  Draft:      { bg: "bg-[var(--icon-bg-slate)]",   text: "text-[var(--icon-text-slate)]",   ring: "ring-[var(--icon-bg-slate)]"   },
+  Completed:  { bg: "bg-[var(--icon-bg-emerald)]", text: "text-[var(--icon-text-emerald)]", ring: "ring-[var(--icon-bg-emerald)]" },
+  Cancelled:  { bg: "bg-[var(--icon-bg-rose)]",    text: "text-[var(--icon-text-rose)]",    ring: "ring-[var(--icon-bg-rose)]"     },
 };
 
 function StatusPill({ status, colors }: { status: string; colors: { bg: string; text: string; ring: string } }) {
   return (
-    <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide ring-1 ${colors.bg} ${colors.text} ${colors.ring}`}>
+    <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wider ring-1 ${colors.bg} ${colors.text} ${colors.ring}`}>
       {status}
     </span>
   );
@@ -117,36 +110,19 @@ function QuickNavCard({
   description: string;
   accent?: "emerald" | "cyan" | "amber" | "violet" | "rose" | "slate";
 }) {
-  const accentMap = {
-    emerald: "group-hover:border-emerald-500/30 group-hover:shadow-emerald-900/20",
-    cyan:    "group-hover:border-cyan-500/30    group-hover:shadow-cyan-900/20",
-    amber:   "group-hover:border-amber-500/30   group-hover:shadow-amber-900/20",
-    violet:  "group-hover:border-violet-500/30  group-hover:shadow-violet-900/20",
-    rose:    "group-hover:border-rose-500/30    group-hover:shadow-rose-900/20",
-    slate:   "group-hover:border-slate-500/30   group-hover:shadow-slate-900/20",
-  };
-  const iconBgMap = {
-    emerald: "bg-emerald-500/10 text-emerald-400 ring-emerald-500/20",
-    cyan:    "bg-cyan-500/10    text-cyan-400    ring-cyan-500/20",
-    amber:   "bg-amber-500/10   text-amber-400   ring-amber-500/20",
-    violet:  "bg-violet-500/10  text-violet-400  ring-violet-500/20",
-    rose:    "bg-rose-500/10    text-rose-400    ring-rose-500/20",
-    slate:   "bg-slate-500/10   text-slate-400   ring-slate-500/20",
-  };
-
   return (
     <a
       href={href}
-      className={`group relative overflow-hidden rounded-2xl border border-white/5 bg-slate-800/40 p-5 backdrop-blur-sm transition-all duration-300 hover:scale-[1.03] hover:bg-slate-800/60 hover:shadow-xl ${accentMap[accent]}`}
+      className={`group relative overflow-hidden rounded-[24px] border border-border-default bg-surface-raised p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[var(--icon-bg-${accent})] hover:border-[var(--icon-text-${accent})]`}
     >
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent" />
-      <div className="relative flex items-start gap-4">
-        <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ring-1 ${iconBgMap[accent]}`}>
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[var(--glass-highlight)] to-transparent opacity-50" />
+      <div className="relative flex items-start gap-5">
+        <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-[16px] bg-[var(--icon-bg-${accent})] text-[var(--icon-text-${accent})] shadow-sm`}>
           {icon}
         </div>
         <div className="min-w-0">
-          <p className="text-sm font-semibold text-white">{title}</p>
-          <p className="mt-0.5 text-xs text-slate-500">{description}</p>
+          <p className="font-display text-base font-bold text-text-primary">{title}</p>
+          <p className="mt-1 text-xs font-medium text-text-muted">{description}</p>
         </div>
       </div>
     </a>
@@ -167,17 +143,17 @@ function FleetStatusBar({ vehicles }: { vehicles: ReturnType<typeof getMockVehic
   vehicles.forEach((v) => { counts[v.status]++; });
 
   const segments: { status: VehicleStatus; color: string; count: number }[] = [
-    { status: "Available", color: "bg-emerald-500", count: counts.Available },
-    { status: "On Trip",   color: "bg-cyan-500",    count: counts["On Trip"] },
-    { status: "In Shop",   color: "bg-amber-500",   count: counts["In Shop"] },
-    { status: "Retired",   color: "bg-slate-600",   count: counts.Retired },
+    { status: "Available", color: "bg-[var(--icon-text-emerald)]", count: counts.Available },
+    { status: "On Trip",   color: "bg-[var(--icon-text-cyan)]",    count: counts["On Trip"] },
+    { status: "In Shop",   color: "bg-[var(--icon-text-amber)]",   count: counts["In Shop"] },
+    { status: "Retired",   color: "bg-[var(--icon-text-slate)]",   count: counts.Retired },
   ];
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-white/5 bg-slate-800/50 p-5 backdrop-blur-sm">
-      <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500 mb-4">Fleet Distribution</h3>
+    <div className="overflow-hidden rounded-[24px] border border-border-default bg-surface-raised p-6 shadow-sm">
+      <h3 className="text-[11px] font-bold uppercase tracking-[0.16em] text-text-muted mb-5">Fleet Distribution</h3>
       {/* Bar */}
-      <div className="flex h-3 w-full overflow-hidden rounded-full bg-slate-700/50">
+      <div className="flex h-4 w-full overflow-hidden rounded-full bg-border-subtle shadow-inner">
         {segments.map((seg) =>
           seg.count > 0 ? (
             <div
@@ -189,13 +165,13 @@ function FleetStatusBar({ vehicles }: { vehicles: ReturnType<typeof getMockVehic
         )}
       </div>
       {/* Legend */}
-      <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1.5">
+      <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2">
         {segments.map((seg) => (
           <div key={seg.status} className="flex items-center gap-2">
-            <span className={`h-2.5 w-2.5 rounded-full ${seg.color}`} />
-            <span className="text-xs text-slate-400">
+            <span className={`h-3 w-3 rounded-full ${seg.color} shadow-sm`} />
+            <span className="text-xs font-medium text-text-secondary">
               {seg.status}{" "}
-              <span className="font-semibold text-white">{seg.count}</span>
+              <span className="font-bold text-text-primary ml-1">{seg.count}</span>
             </span>
           </div>
         ))}
@@ -215,35 +191,35 @@ export function DashboardPage() {
   const recentTrips = trips.slice(0, 5);
 
   return (
-    <div className="min-h-screen bg-slate-900 px-4 py-8 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl space-y-8">
+    <div className="min-h-screen px-4 py-8 sm:px-8 lg:px-10">
+      <div className="mx-auto max-w-7xl space-y-10">
 
         {/* ── Hero header ── */}
-        <header className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-slate-950 via-slate-800 to-slate-900 px-6 py-8 shadow-2xl ring-1 ring-white/5 sm:px-10">
-          <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-emerald-500/10 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-10 right-1/3 h-40 w-40 rounded-full bg-cyan-500/10 blur-2xl" />
+        <header className="relative overflow-hidden rounded-[32px] bg-gradient-to-br from-surface-raised to-surface-base px-8 py-10 shadow-lg border border-[var(--glass-border)] sm:px-12">
+          <div className="pointer-events-none absolute -right-16 -top-16 h-80 w-80 rounded-full bg-[var(--icon-bg-emerald)] blur-3xl opacity-50" />
+          <div className="pointer-events-none absolute -bottom-10 right-1/3 h-56 w-56 rounded-full bg-[var(--icon-bg-cyan)] blur-2xl opacity-50" />
 
           <div className="relative">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-emerald-500">
+            <p className="font-sans text-[11px] font-bold uppercase tracking-[0.24em] text-[var(--icon-text-emerald)]">
               Fleet Operations
             </p>
-            <div className="mt-3 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div className="mt-4 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
               <div>
-                <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+                <h1 className="font-display text-4xl font-extrabold tracking-tight text-text-primary sm:text-5xl">
                   Dashboard Overview
                 </h1>
-                <p className="mt-2 max-w-xl text-sm text-slate-400">
+                <p className="mt-3 max-w-xl text-base font-medium text-text-secondary">
                   Real-time fleet snapshot — vehicles, trips, drivers, and operational health at a glance.
                 </p>
               </div>
-              <div className="flex gap-3">
-                <div className="rounded-2xl border border-white/10 bg-white/5 px-5 py-3 backdrop-blur-sm">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-400">Utilization</p>
-                  <p className="mt-1 text-2xl font-bold text-emerald-400">{kpis.fleetUtilizationPercent}%</p>
+              <div className="flex gap-4">
+                <div className="rounded-[20px] border border-[var(--glass-border)] bg-surface-overlay px-6 py-4 shadow-sm backdrop-blur-md">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-text-muted">Utilization</p>
+                  <p className="font-display mt-1 text-3xl font-bold text-[var(--icon-text-emerald)]">{kpis.fleetUtilizationPercent}%</p>
                 </div>
-                <div className="rounded-2xl border border-white/10 bg-white/5 px-5 py-3 backdrop-blur-sm">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-400">Fleet Size</p>
-                  <p className="mt-1 text-2xl font-bold text-cyan-400">{kpis.totalVehicles}</p>
+                <div className="rounded-[20px] border border-[var(--glass-border)] bg-surface-overlay px-6 py-4 shadow-sm backdrop-blur-md">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-text-muted">Fleet Size</p>
+                  <p className="font-display mt-1 text-3xl font-bold text-[var(--icon-text-cyan)]">{kpis.totalVehicles}</p>
                 </div>
               </div>
             </div>
@@ -252,27 +228,27 @@ export function DashboardPage() {
 
         {/* ── KPI Grid ── */}
         <section aria-label="Key performance indicators">
-          <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+          <h2 className="mb-5 text-[11px] font-bold uppercase tracking-[0.16em] text-text-muted ml-2">
             KPI Overview
           </h2>
-          <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-5 lg:grid-cols-4">
             <KpiCard title="Active Vehicles" value={kpis.activeVehicles} icon={<VehicleIcon />} />
             <KpiCard title="Available Vehicles" value={kpis.availableVehicles} icon={<VehicleIcon />} />
-            <KpiCard title="Vehicles in Shop" value={kpis.maintenanceVehicles} icon={<MaintenanceIcon />} accentClass="text-amber-400" />
-            <KpiCard title="Fleet Utilization" value={`${kpis.fleetUtilizationPercent}%`} icon={<GaugeIcon />} accentClass="text-cyan-400" />
+            <KpiCard title="Vehicles in Shop" value={kpis.maintenanceVehicles} icon={<MaintenanceIcon />} accent="amber" />
+            <KpiCard title="Fleet Utilization" value={`${kpis.fleetUtilizationPercent}%`} icon={<GaugeIcon />} accent="cyan" />
             <KpiCard title="Active Trips" value={kpis.activeTrips} icon={<TripIcon />} />
-            <KpiCard title="Pending Trips" value={kpis.pendingTrips} icon={<TripIcon />} accentClass="text-slate-300" />
+            <KpiCard title="Pending Trips" value={kpis.pendingTrips} icon={<TripIcon />} accent="slate" />
             <KpiCard title="Drivers on Duty" value={kpis.driversOnDuty} icon={<DriverIcon />} />
-            <KpiCard title="Total Drivers" value={drivers.length} icon={<DriverIcon />} accentClass="text-violet-400" />
+            <KpiCard title="Total Drivers" value={drivers.length} icon={<DriverIcon />} accent="violet" />
           </div>
         </section>
 
         {/* ── Quick Navigation ── */}
         <section aria-label="Quick navigation">
-          <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+          <h2 className="mb-5 text-[11px] font-bold uppercase tracking-[0.16em] text-text-muted ml-2">
             Quick Navigation
           </h2>
-          <div className="grid grid-cols-2 gap-4 lg:grid-cols-3">
+          <div className="grid grid-cols-2 gap-5 lg:grid-cols-3">
             <QuickNavCard href="/vehicles" icon={<VehicleIcon />} title="Vehicles" description="Manage fleet assets & status" accent="emerald" />
             <QuickNavCard href="/trips" icon={<TripIcon />} title="Trips" description="Dispatch & track shipments" accent="cyan" />
             <QuickNavCard href="/drivers" icon={<DriverIcon />} title="Drivers" description="Licenses, assignments & roster" accent="violet" />
@@ -283,33 +259,33 @@ export function DashboardPage() {
         </section>
 
         {/* ── Two-column: Recent Activity + Fleet Status ── */}
-        <div className="grid gap-6 lg:grid-cols-5">
+        <div className="grid gap-8 lg:grid-cols-5">
           {/* Recent Activity — spans 3 cols */}
           <section aria-label="Recent trip activity" className="lg:col-span-3">
-            <div className="overflow-hidden rounded-2xl border border-white/5 bg-slate-800/50 backdrop-blur-sm">
-              <div className="flex items-center justify-between border-b border-white/5 px-6 py-4">
+            <div className="overflow-hidden rounded-[24px] border border-border-default bg-surface-raised shadow-sm">
+              <div className="flex items-center justify-between border-b border-border-default px-7 py-5">
                 <div>
-                  <h2 className="text-base font-semibold text-white">Recent Activity</h2>
-                  <p className="mt-0.5 text-xs text-slate-500">Latest trip updates across the fleet</p>
+                  <h2 className="font-display text-lg font-bold text-text-primary">Recent Activity</h2>
+                  <p className="mt-1 text-xs font-medium text-text-muted">Latest trip updates across the fleet</p>
                 </div>
-                <span className="rounded-full bg-cyan-500/10 px-3 py-1 text-xs font-semibold text-cyan-400 ring-1 ring-cyan-500/20">
+                <span className="rounded-full bg-[var(--icon-bg-cyan)] px-3 py-1 text-[11px] font-bold text-[var(--icon-text-cyan)] ring-1 ring-[var(--icon-bg-cyan)]">
                   {trips.length} trips
                 </span>
               </div>
-              <div className="divide-y divide-white/5">
+              <div className="divide-y divide-border-subtle">
                 {recentTrips.map((trip) => {
                   const colors = TRIP_STATUS_COLORS[trip.status];
                   return (
-                    <div key={trip.id} className="flex items-center gap-4 px-6 py-3.5 transition-colors hover:bg-slate-700/30">
-                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-slate-700/60 text-slate-400">
+                    <div key={trip.id} className="flex items-center gap-5 px-7 py-4 transition-colors hover:bg-border-subtle">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[14px] bg-[var(--icon-bg-slate)] text-text-secondary">
                         <TripIcon />
                       </div>
                       <div className="min-w-0 flex-1">
-                        <p className="text-sm font-medium text-slate-200 truncate">
+                        <p className="text-sm font-semibold text-text-primary truncate">
                           {trip.source} → {trip.destination}
                         </p>
-                        <p className="text-[11px] text-slate-500">
-                          {trip.vehicleId} · {trip.cargoWeight} kg · {trip.plannedDistance} km
+                        <p className="text-[11px] font-medium text-text-muted mt-0.5">
+                          {trip.vehicleId} • {trip.cargoWeight} kg • {trip.plannedDistance} km
                         </p>
                       </div>
                       <StatusPill status={trip.status} colors={colors} />
@@ -321,29 +297,29 @@ export function DashboardPage() {
           </section>
 
           {/* Fleet Status — spans 2 cols */}
-          <div className="space-y-6 lg:col-span-2">
+          <div className="space-y-8 lg:col-span-2">
             <FleetStatusBar vehicles={vehicles} />
 
             {/* Driver Status summary */}
-            <div className="overflow-hidden rounded-2xl border border-white/5 bg-slate-800/50 p-5 backdrop-blur-sm">
-              <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500 mb-4">Driver Status</h3>
-              <div className="space-y-3">
+            <div className="overflow-hidden rounded-[24px] border border-border-default bg-surface-raised p-6 shadow-sm">
+              <h3 className="text-[11px] font-bold uppercase tracking-[0.16em] text-text-muted mb-5">Driver Status</h3>
+              <div className="space-y-4">
                 {(["Available", "On Trip", "Off Duty"] as const).map((status) => {
                   const count = drivers.filter((d) => d.status === status).length;
                   const total = drivers.length;
                   const pct = total > 0 ? Math.round((count / total) * 100) : 0;
                   const colors = {
-                    Available: "bg-emerald-500",
-                    "On Trip": "bg-cyan-500",
-                    "Off Duty": "bg-slate-600",
+                    Available: "bg-[var(--icon-text-emerald)]",
+                    "On Trip": "bg-[var(--icon-text-cyan)]",
+                    "Off Duty": "bg-[var(--icon-text-slate)]",
                   };
                   return (
                     <div key={status}>
-                      <div className="flex items-center justify-between mb-1">
-                        <span className="text-xs text-slate-400">{status}</span>
-                        <span className="text-xs font-semibold text-white">{count}</span>
+                      <div className="flex items-center justify-between mb-1.5">
+                        <span className="text-xs font-medium text-text-secondary">{status}</span>
+                        <span className="text-xs font-bold text-text-primary">{count}</span>
                       </div>
-                      <div className="h-1.5 w-full rounded-full bg-slate-700/50">
+                      <div className="h-2 w-full overflow-hidden rounded-full bg-border-subtle shadow-inner">
                         <div
                           className={`h-full rounded-full ${colors[status]} transition-all duration-500`}
                           style={{ width: `${pct}%` }}

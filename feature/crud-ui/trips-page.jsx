@@ -536,20 +536,20 @@ export default function TripsPage() {
 
 const columnHeaderStyles = {
   Draft: {
-    backgroundColor: '#dadce0',
-    color: '#3c4043'
+    backgroundColor: 'var(--border-default)',
+    color: 'var(--icon-text-slate)'
   },
   Dispatched: {
-    backgroundColor: '#1a73e8',
-    color: '#fff'
+    backgroundColor: 'var(--icon-text-emerald)',
+    color: 'var(--surface-raised)'
   },
   Completed: {
-    backgroundColor: '#137333',
-    color: '#fff'
+    backgroundColor: 'var(--icon-text-emerald)',
+    color: 'var(--surface-raised)'
   },
   Cancelled: {
-    backgroundColor: '#c5221f',
-    color: '#fff'
+    backgroundColor: 'var(--icon-text-rose)',
+    color: 'var(--surface-raised)'
   }
 };
 
@@ -559,8 +559,8 @@ const styles = {
     maxWidth: '1280px',
     margin: '0 auto',
     fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-    color: '#333',
-    backgroundColor: '#fafafa',
+    color: 'var(--text-primary)',
+    backgroundColor: 'var(--surface-base)',
     minHeight: '100vh'
   },
   header: {
@@ -574,12 +574,12 @@ const styles = {
   title: {
     fontSize: '28px',
     fontWeight: '700',
-    color: '#111',
+    color: 'var(--text-primary)',
     margin: 0
   },
   subtitle: {
     fontSize: '14px',
-    color: '#666',
+    color: 'var(--text-secondary)',
     margin: 0
   },
   layoutGrid: {
@@ -589,7 +589,7 @@ const styles = {
     alignItems: 'start'
   },
   formPanel: {
-    backgroundColor: '#fff',
+    backgroundColor: 'var(--surface-raised)',
     padding: '24px',
     borderRadius: '8px',
     boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)',
@@ -603,7 +603,7 @@ const styles = {
   panelTitle: {
     fontSize: '18px',
     fontWeight: '600',
-    color: '#111',
+    color: 'var(--text-primary)',
     margin: '0 0 16px 0'
   },
   boardHeader: {
@@ -624,7 +624,7 @@ const styles = {
   formLabel: {
     fontSize: '12px',
     fontWeight: '600',
-    color: '#666',
+    color: 'var(--text-secondary)',
     textTransform: 'uppercase',
     letterSpacing: '0.5px'
   },
@@ -632,27 +632,27 @@ const styles = {
     padding: '8px 12px',
     fontSize: '14px',
     borderRadius: '6px',
-    border: '1px solid #ddd',
+    border: '1px solid var(--border-default)',
     outline: 'none',
-    backgroundColor: '#fff',
-    color: '#333'
+    backgroundColor: 'var(--surface-raised)',
+    color: 'var(--text-primary)'
   },
   formSelect: {
     padding: '8px 12px',
     fontSize: '14px',
     borderRadius: '6px',
-    border: '1px solid #ddd',
+    border: '1px solid var(--border-default)',
     outline: 'none',
-    backgroundColor: '#fff',
-    color: '#333',
+    backgroundColor: 'var(--surface-raised)',
+    color: 'var(--text-primary)',
     cursor: 'pointer'
   },
   submitButton: {
     padding: '10px 20px',
     fontSize: '14px',
     fontWeight: '600',
-    color: '#fff',
-    backgroundColor: '#1a73e8',
+    color: 'var(--surface-raised)',
+    backgroundColor: 'var(--icon-text-emerald)',
     border: 'none',
     borderRadius: '6px',
     cursor: 'pointer',
@@ -661,8 +661,8 @@ const styles = {
     marginTop: '8px'
   },
   formError: {
-    color: '#c5221f',
-    backgroundColor: '#fce8e6',
+    color: 'var(--icon-text-rose)',
+    backgroundColor: 'var(--icon-bg-rose)',
     padding: '8px 12px',
     borderRadius: '6px',
     fontSize: '12px',
@@ -677,7 +677,7 @@ const styles = {
     alignItems: 'start'
   },
   kanbanColumn: {
-    backgroundColor: '#f8f9fa',
+    backgroundColor: 'var(--surface-base)',
     borderRadius: '8px',
     border: '1px solid #e0e0e0',
     minHeight: '600px',
@@ -712,7 +712,7 @@ const styles = {
     overflowY: 'auto'
   },
   card: {
-    backgroundColor: '#fff',
+    backgroundColor: 'var(--surface-raised)',
     padding: '14px',
     borderRadius: '6px',
     border: '1px solid #dadce0',
@@ -725,7 +725,7 @@ const styles = {
   cardRoute: {
     fontSize: '14px',
     fontWeight: '700',
-    color: '#111',
+    color: 'var(--text-primary)',
     display: 'flex',
     alignItems: 'center',
     flexWrap: 'wrap',
@@ -735,18 +735,18 @@ const styles = {
     marginBottom: '4px'
   },
   arrow: {
-    color: '#1a73e8'
+    color: 'var(--icon-text-cyan)'
   },
   cardDetail: {
     fontSize: '12px',
-    color: '#555',
+    color: 'var(--text-secondary)',
     lineHeight: '1.4'
   },
   mono: {
     fontFamily: 'monospace',
     fontWeight: '600',
-    color: '#111',
-    backgroundColor: '#f1f3f4',
+    color: 'var(--text-primary)',
+    backgroundColor: 'var(--icon-bg-slate)',
     padding: '2px 4px',
     borderRadius: '4px'
   },
@@ -754,8 +754,8 @@ const styles = {
     padding: '8px 12px',
     fontSize: '12px',
     fontWeight: '600',
-    color: '#fff',
-    backgroundColor: '#1a73e8',
+    color: 'var(--surface-raised)',
+    backgroundColor: 'var(--icon-text-emerald)',
     border: 'none',
     borderRadius: '4px',
     cursor: 'pointer',
@@ -766,8 +766,8 @@ const styles = {
     padding: '8px 12px',
     fontSize: '12px',
     fontWeight: '600',
-    color: '#fff',
-    backgroundColor: '#137333',
+    color: 'var(--surface-raised)',
+    backgroundColor: 'var(--icon-text-emerald)',
     border: 'none',
     borderRadius: '4px',
     cursor: 'pointer',
@@ -778,7 +778,7 @@ const styles = {
     padding: '8px 12px',
     fontSize: '12px',
     fontWeight: '600',
-    color: '#fff',
+    color: 'var(--surface-raised)',
     backgroundColor: '#d93025',
     border: 'none',
     borderRadius: '4px',
@@ -793,14 +793,14 @@ const styles = {
   },
   dateCreatedBadge: {
     fontSize: '10px',
-    color: '#888',
+    color: 'var(--text-muted)',
     marginTop: '4px',
     borderTop: '1px solid #f1f3f4',
     paddingTop: '6px'
   },
   cardError: {
-    color: '#c5221f',
-    backgroundColor: '#fce8e6',
+    color: 'var(--icon-text-rose)',
+    backgroundColor: 'var(--icon-bg-rose)',
     border: '1px solid #fad2cf',
     borderRadius: '4px',
     padding: '6px 10px',
@@ -814,7 +814,7 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     gap: '8px',
-    backgroundColor: '#f8f9fa',
+    backgroundColor: 'var(--surface-base)',
     padding: '10px',
     borderRadius: '6px',
     border: '1px solid #e0e0e0',
@@ -828,17 +828,17 @@ const styles = {
   inlineFormLabel: {
     fontSize: '10px',
     fontWeight: '600',
-    color: '#666',
+    color: 'var(--text-secondary)',
     textTransform: 'uppercase'
   },
   inlineInput: {
     padding: '6px 8px',
     fontSize: '12px',
     borderRadius: '4px',
-    border: '1px solid #ddd',
+    border: '1px solid var(--border-default)',
     outline: 'none',
-    backgroundColor: '#fff',
-    color: '#333'
+    backgroundColor: 'var(--surface-raised)',
+    color: 'var(--text-primary)'
   },
   inlineActions: {
     display: 'flex',
@@ -849,8 +849,8 @@ const styles = {
     padding: '6px 10px',
     fontSize: '11px',
     fontWeight: '600',
-    color: '#fff',
-    backgroundColor: '#137333',
+    color: 'var(--surface-raised)',
+    backgroundColor: 'var(--icon-text-emerald)',
     border: 'none',
     borderRadius: '4px',
     cursor: 'pointer',
@@ -860,8 +860,8 @@ const styles = {
     padding: '6px 10px',
     fontSize: '11px',
     fontWeight: '600',
-    color: '#5f6368',
-    backgroundColor: '#fff',
+    color: 'var(--text-secondary)',
+    backgroundColor: 'var(--surface-raised)',
     border: '1px solid #dadce0',
     borderRadius: '4px',
     cursor: 'pointer',

@@ -155,20 +155,20 @@ export default function VehiclesPage() {
 
 const statusStyles = {
   Available: {
-    backgroundColor: '#e6f4ea',
-    color: '#137333',
+    backgroundColor: 'var(--icon-bg-emerald)',
+    color: 'var(--icon-text-emerald)',
   },
   'On Trip': {
-    backgroundColor: '#e8f0fe',
-    color: '#1a73e8',
+    backgroundColor: 'var(--icon-bg-cyan)',
+    color: 'var(--icon-text-cyan)',
   },
   'In Shop': {
-    backgroundColor: '#fef7e0',
-    color: '#b06000',
+    backgroundColor: 'var(--icon-bg-amber)',
+    color: 'var(--icon-text-amber)',
   },
   Retired: {
-    backgroundColor: '#f1f3f4',
-    color: '#3c4043',
+    backgroundColor: 'var(--icon-bg-slate)',
+    color: 'var(--icon-text-slate)',
   }
 };
 
@@ -178,8 +178,8 @@ const styles = {
     maxWidth: '1200px',
     margin: '0 auto',
     fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-    color: '#333',
-    backgroundColor: '#fafafa',
+    color: 'var(--text-primary)',
+    backgroundColor: 'var(--surface-base)',
     minHeight: '100vh',
   },
   header: {
@@ -196,20 +196,20 @@ const styles = {
   title: {
     fontSize: '28px',
     fontWeight: '700',
-    color: '#111',
+    color: 'var(--text-primary)',
     margin: 0,
   },
   subtitle: {
     fontSize: '14px',
-    color: '#666',
+    color: 'var(--text-secondary)',
     margin: 0,
   },
   addButton: {
     padding: '10px 20px',
     fontSize: '14px',
     fontWeight: '600',
-    color: '#fff',
-    backgroundColor: '#1a73e8',
+    color: 'var(--surface-raised)',
+    backgroundColor: 'var(--icon-text-emerald)',
     border: 'none',
     borderRadius: '6px',
     cursor: 'pointer',
@@ -220,7 +220,7 @@ const styles = {
     display: 'flex',
     gap: '16px',
     alignItems: 'flex-end',
-    backgroundColor: '#fff',
+    backgroundColor: 'var(--surface-raised)',
     padding: '16px 20px',
     borderRadius: '8px',
     boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)',
@@ -236,7 +236,7 @@ const styles = {
   filterLabel: {
     fontSize: '12px',
     fontWeight: '600',
-    color: '#666',
+    color: 'var(--text-secondary)',
     textTransform: 'uppercase',
     letterSpacing: '0.5px',
   },
@@ -244,22 +244,22 @@ const styles = {
     padding: '8px 12px',
     fontSize: '14px',
     borderRadius: '6px',
-    border: '1px solid #ddd',
+    border: '1px solid var(--border-default)',
     outline: 'none',
   },
   filterSelect: {
     padding: '8px 12px',
     fontSize: '14px',
     borderRadius: '6px',
-    border: '1px solid #ddd',
-    backgroundColor: '#fff',
+    border: '1px solid var(--border-default)',
+    backgroundColor: 'var(--surface-raised)',
     outline: 'none',
   },
   clearBtn: {
     padding: '8px 16px',
     fontSize: '14px',
     fontWeight: '500',
-    color: '#d93025',
+    color: 'var(--icon-text-rose)',
     backgroundColor: 'transparent',
     border: 'none',
     cursor: 'pointer',
@@ -268,7 +268,7 @@ const styles = {
     alignItems: 'center',
   },
   tableContainer: {
-    backgroundColor: '#fff',
+    backgroundColor: 'var(--surface-raised)',
     borderRadius: '8px',
     boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)',
     overflowX: 'auto',
@@ -279,30 +279,30 @@ const styles = {
     textAlign: 'left',
   },
   tableHeaderRow: {
-    backgroundColor: '#f8f9fa',
-    borderBottom: '1px solid #eee',
+    backgroundColor: 'var(--surface-base)',
+    borderBottom: '1px solid var(--border-subtle)',
   },
   th: {
     padding: '16px 20px',
     fontSize: '12px',
     fontWeight: '600',
-    color: '#555',
+    color: 'var(--text-secondary)',
     textTransform: 'uppercase',
   },
   tr: {
-    borderBottom: '1px solid #eee',
+    borderBottom: '1px solid var(--border-subtle)',
     transition: 'background-color 0.15s',
   },
   td: {
     padding: '16px 20px',
     fontSize: '14px',
-    color: '#333',
+    color: 'var(--text-primary)',
     verticalAlign: 'middle',
   },
   regCell: {
     fontFamily: 'monospace',
     fontWeight: '600',
-    color: '#111',
+    color: 'var(--text-primary)',
   },
   statusBadge: {
     padding: '4px 10px',
@@ -314,7 +314,7 @@ const styles = {
   emptyState: {
     padding: '40px',
     textAlign: 'center',
-    color: '#777',
+    color: 'var(--text-muted)',
     fontSize: '16px',
   },
   modalOverlay: {

@@ -368,7 +368,7 @@ export default function FuelPage() {
                       </span>
                     </td>
                     <td style={{ ...styles.td, fontWeight: '600' }}>${exp.amount.toLocaleString(undefined, { minimumFractionDigits: 2 })}</td>
-                    <td style={{ ...styles.td, color: '#666', fontSize: '13px' }}>{exp.notes || '-'}</td>
+                    <td style={{ ...styles.td, color: 'var(--text-secondary)', fontSize: '13px' }}>{exp.notes || '-'}</td>
                   </tr>
                 ))}
               </tbody>
@@ -381,11 +381,11 @@ export default function FuelPage() {
 }
 
 const expenseBadgeStyles = {
-  Toll: { backgroundColor: '#e8f0fe', color: '#1a73e8' },
-  Maintenance: { backgroundColor: '#fce8e6', color: '#c5221f' },
-  Parking: { backgroundColor: '#e6f4ea', color: '#137333' },
-  Insurance: { backgroundColor: '#f1f3f4', color: '#3c4043' },
-  Other: { backgroundColor: '#fef7e0', color: '#b06000' }
+  Toll: { backgroundColor: 'var(--icon-bg-cyan)', color: 'var(--icon-text-cyan)' },
+  Maintenance: { backgroundColor: 'var(--icon-bg-rose)', color: 'var(--icon-text-rose)' },
+  Parking: { backgroundColor: 'var(--icon-bg-emerald)', color: 'var(--icon-text-emerald)' },
+  Insurance: { backgroundColor: 'var(--icon-bg-slate)', color: 'var(--icon-text-slate)' },
+  Other: { backgroundColor: 'var(--icon-bg-amber)', color: 'var(--icon-text-amber)' }
 };
 
 const styles = {
@@ -394,8 +394,8 @@ const styles = {
     maxWidth: '1200px',
     margin: '0 auto',
     fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-    color: '#333',
-    backgroundColor: '#fafafa',
+    color: 'var(--text-primary)',
+    backgroundColor: 'var(--surface-base)',
     minHeight: '100vh',
   },
   header: {
@@ -409,17 +409,17 @@ const styles = {
   title: {
     fontSize: '28px',
     fontWeight: '700',
-    color: '#111',
+    color: 'var(--text-primary)',
     margin: 0,
   },
   subtitle: {
     fontSize: '14px',
-    color: '#666',
+    color: 'var(--text-secondary)',
     margin: 0,
   },
   summaryCard: {
-    backgroundColor: '#1a73e8',
-    color: '#fff',
+    backgroundColor: 'var(--icon-text-emerald)',
+    color: 'var(--surface-raised)',
     borderRadius: '12px',
     padding: '24px 32px',
     boxShadow: '0 4px 20px rgba(26, 115, 232, 0.3)',
@@ -477,7 +477,7 @@ const styles = {
     gap: '32px',
   },
   sectionCard: {
-    backgroundColor: '#fff',
+    backgroundColor: 'var(--surface-raised)',
     borderRadius: '8px',
     boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)',
     padding: '24px',
@@ -487,28 +487,28 @@ const styles = {
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: '20px',
-    borderBottom: '1px solid #eee',
+    borderBottom: '1px solid var(--border-subtle)',
     paddingBottom: '12px',
   },
   sectionTitle: {
     fontSize: '20px',
     fontWeight: '700',
-    color: '#222',
+    color: 'var(--text-primary)',
     margin: 0,
   },
   addButton: {
     padding: '8px 16px',
     fontSize: '13px',
     fontWeight: '600',
-    color: '#fff',
-    backgroundColor: '#1a73e8',
+    color: 'var(--surface-raised)',
+    backgroundColor: 'var(--icon-text-emerald)',
     border: 'none',
     borderRadius: '6px',
     cursor: 'pointer',
     transition: 'background-color 0.2s',
   },
   inlineForm: {
-    backgroundColor: '#f8f9fa',
+    backgroundColor: 'var(--surface-base)',
     borderRadius: '8px',
     padding: '20px',
     marginBottom: '20px',
@@ -517,7 +517,7 @@ const styles = {
   formTitle: {
     fontSize: '15px',
     fontWeight: '600',
-    color: '#333',
+    color: 'var(--text-primary)',
     margin: '0 0 16px 0',
   },
   formGrid: {
@@ -533,23 +533,23 @@ const styles = {
   formLabel: {
     fontSize: '12px',
     fontWeight: '600',
-    color: '#555',
+    color: 'var(--text-secondary)',
   },
   formInput: {
     padding: '10px',
     fontSize: '14px',
     borderRadius: '6px',
-    border: '1px solid #ccc',
-    backgroundColor: '#fff',
+    border: '1px solid var(--border-default)',
+    backgroundColor: 'var(--surface-raised)',
     outline: 'none',
   },
   inputError: {
     borderColor: '#d93025',
-    backgroundColor: '#fce8e6',
+    backgroundColor: 'var(--icon-bg-rose)',
   },
   errorText: {
     fontSize: '12px',
-    color: '#d93025',
+    color: 'var(--icon-text-rose)',
     marginTop: '2px',
   },
   formActions: {
@@ -563,8 +563,8 @@ const styles = {
     fontSize: '13px',
     fontWeight: '500',
     borderRadius: '6px',
-    border: '1px solid #ccc',
-    backgroundColor: '#fff',
+    border: '1px solid var(--border-default)',
+    backgroundColor: 'var(--surface-raised)',
     cursor: 'pointer',
   },
   saveBtn: {
@@ -573,8 +573,8 @@ const styles = {
     fontWeight: '500',
     borderRadius: '6px',
     border: 'none',
-    backgroundColor: '#1a73e8',
-    color: '#fff',
+    backgroundColor: 'var(--icon-text-emerald)',
+    color: 'var(--surface-raised)',
     cursor: 'pointer',
   },
   tableWrapper: {
@@ -586,29 +586,29 @@ const styles = {
     textAlign: 'left',
   },
   tableHeaderRow: {
-    backgroundColor: '#f8f9fa',
-    borderBottom: '1px solid #eee',
+    backgroundColor: 'var(--surface-base)',
+    borderBottom: '1px solid var(--border-subtle)',
   },
   th: {
     padding: '12px 16px',
     fontSize: '12px',
     fontWeight: '600',
-    color: '#555',
+    color: 'var(--text-secondary)',
     textTransform: 'uppercase',
   },
   tr: {
-    borderBottom: '1px solid #eee',
+    borderBottom: '1px solid var(--border-subtle)',
   },
   td: {
     padding: '12px 16px',
     fontSize: '14px',
-    color: '#333',
+    color: 'var(--text-primary)',
     verticalAlign: 'middle',
   },
   monoCell: {
     fontFamily: 'monospace',
     fontWeight: '600',
-    color: '#111',
+    color: 'var(--text-primary)',
   },
   expenseBadge: {
     padding: '2px 8px',
