@@ -252,3 +252,61 @@ export const mockMaintenanceRecords = [
     dateRaised: "2026-07-09"
   }
 ];
+
+export const mockTrips = [
+  {
+    id: "t-1",
+    source: "Chicago",
+    destination: "Indianapolis",
+    vehicleRegistrationNumber: "TX-9988-A",
+    driverName: "John Doe",
+    cargoWeight: 1200,
+    distance: 180,
+    status: "Draft",
+    dateCreated: "2026-07-10"
+  },
+  {
+    id: "t-2",
+    source: "New York",
+    destination: "Boston",
+    vehicleRegistrationNumber: "TX-7722-C",
+    driverName: "Sarah Smith",
+    cargoWeight: 2500,
+    distance: 215,
+    status: "Draft",
+    dateCreated: "2026-07-11"
+  },
+  {
+    id: "t-3",
+    source: "Houston",
+    destination: "Dallas",
+    vehicleRegistrationNumber: "TX-1122-E",
+    driverName: "Michael Brown",
+    cargoWeight: 900,
+    distance: 240,
+    status: "Dispatched",
+    dateCreated: "2026-07-12"
+  },
+  {
+    id: "t-4",
+    source: "Miami",
+    destination: "Orlando",
+    vehicleRegistrationNumber: "TX-4411-B",
+    driverName: "John Doe",
+    cargoWeight: 1500,
+    distance: 235,
+    status: "Completed",
+    dateCreated: "2026-07-08"
+  },
+  {
+    id: "t-5",
+    source: "Los Angeles",
+    destination: "San Francisco",
+    vehicleRegistrationNumber: "TX-8833-F",
+    driverName: "Sarah Smith",
+    cargoWeight: 3000,
+    distance: 380,
+    status: "Cancelled",
+    dateCreated: "2026-07-09"
+  }
+];
