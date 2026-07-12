@@ -230,31 +230,31 @@ export default function MaintenancePage() {
 
 const statusBadgeStyles = {
   Pending: {
-    backgroundColor: '#fef7e0',
-    color: '#b06000',
+    backgroundColor: 'var(--icon-bg-amber)',
+    color: 'var(--icon-text-amber)',
   },
   'In Progress': {
-    backgroundColor: '#e8f0fe',
-    color: '#1a73e8',
+    backgroundColor: 'var(--icon-bg-cyan)',
+    color: 'var(--icon-text-cyan)',
   },
   Resolved: {
-    backgroundColor: '#e6f4ea',
-    color: '#137333',
+    backgroundColor: 'var(--icon-bg-emerald)',
+    color: 'var(--icon-text-emerald)',
   }
 };
 
 const priorityBadgeStyles = {
   High: {
-    backgroundColor: '#fce8e6',
-    color: '#c5221f',
+    backgroundColor: 'var(--icon-bg-rose)',
+    color: 'var(--icon-text-rose)',
   },
   Medium: {
-    backgroundColor: '#fef7e0',
-    color: '#b06000',
+    backgroundColor: 'var(--icon-bg-amber)',
+    color: 'var(--icon-text-amber)',
   },
   Low: {
-    backgroundColor: '#f1f3f4',
-    color: '#555',
+    backgroundColor: 'var(--icon-bg-slate)',
+    color: 'var(--text-secondary)',
   }
 };
 
@@ -264,8 +264,8 @@ const styles = {
     maxWidth: '1200px',
     margin: '0 auto',
     fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-    color: '#333',
-    backgroundColor: '#fafafa',
+    color: 'var(--text-primary)',
+    backgroundColor: 'var(--surface-base)',
     minHeight: '100vh',
   },
   header: {
@@ -279,12 +279,12 @@ const styles = {
   title: {
     fontSize: '28px',
     fontWeight: '700',
-    color: '#111',
+    color: 'var(--text-primary)',
     margin: 0,
   },
   subtitle: {
     fontSize: '14px',
-    color: '#666',
+    color: 'var(--text-secondary)',
     margin: 0,
   },
   panelContainer: {
@@ -294,14 +294,14 @@ const styles = {
     marginBottom: '32px',
   },
   leftPanel: {
-    backgroundColor: '#fff',
+    backgroundColor: 'var(--surface-raised)',
     borderRadius: '8px',
     boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)',
     padding: '24px',
     height: 'fit-content',
   },
   rightPanel: {
-    backgroundColor: '#fff',
+    backgroundColor: 'var(--surface-raised)',
     borderRadius: '8px',
     boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)',
     padding: '24px',
@@ -309,9 +309,9 @@ const styles = {
   panelTitle: {
     fontSize: '18px',
     fontWeight: '700',
-    color: '#222',
+    color: 'var(--text-primary)',
     margin: '0 0 20px 0',
-    borderBottom: '1px solid #eee',
+    borderBottom: '1px solid var(--border-subtle)',
     paddingBottom: '12px',
   },
   form: {
@@ -327,39 +327,39 @@ const styles = {
   label: {
     fontSize: '13px',
     fontWeight: '600',
-    color: '#555',
+    color: 'var(--text-secondary)',
   },
   input: {
     padding: '10px 12px',
     fontSize: '14px',
     borderRadius: '6px',
-    border: '1px solid #ccc',
+    border: '1px solid var(--border-default)',
     outline: 'none',
   },
   select: {
     padding: '10px 12px',
     fontSize: '14px',
     borderRadius: '6px',
-    border: '1px solid #ccc',
-    backgroundColor: '#fff',
+    border: '1px solid var(--border-default)',
+    backgroundColor: 'var(--surface-raised)',
     outline: 'none',
   },
   textarea: {
     padding: '10px 12px',
     fontSize: '14px',
     borderRadius: '6px',
-    border: '1px solid #ccc',
+    border: '1px solid var(--border-default)',
     outline: 'none',
     fontFamily: 'inherit',
     resize: 'vertical',
   },
   inputError: {
     borderColor: '#d93025',
-    backgroundColor: '#fce8e6',
+    backgroundColor: 'var(--icon-bg-rose)',
   },
   errorText: {
     fontSize: '12px',
-    color: '#d93025',
+    color: 'var(--icon-text-rose)',
     marginTop: '2px',
   },
   submitBtn: {
@@ -368,8 +368,8 @@ const styles = {
     fontWeight: '600',
     borderRadius: '6px',
     border: 'none',
-    backgroundColor: '#1a73e8',
-    color: '#fff',
+    backgroundColor: 'var(--icon-text-emerald)',
+    color: 'var(--surface-raised)',
     cursor: 'pointer',
     marginTop: '10px',
     transition: 'background-color 0.2s',
@@ -383,29 +383,29 @@ const styles = {
     textAlign: 'left',
   },
   tableHeaderRow: {
-    backgroundColor: '#f8f9fa',
-    borderBottom: '1px solid #eee',
+    backgroundColor: 'var(--surface-base)',
+    borderBottom: '1px solid var(--border-subtle)',
   },
   th: {
     padding: '12px 16px',
     fontSize: '11px',
     fontWeight: '600',
-    color: '#555',
+    color: 'var(--text-secondary)',
     textTransform: 'uppercase',
   },
   tr: {
-    borderBottom: '1px solid #eee',
+    borderBottom: '1px solid var(--border-subtle)',
   },
   td: {
     padding: '12px 16px',
     fontSize: '14px',
-    color: '#333',
+    color: 'var(--text-primary)',
     verticalAlign: 'middle',
   },
   monoCell: {
     fontFamily: 'monospace',
     fontWeight: '600',
-    color: '#111',
+    color: 'var(--text-primary)',
   },
   issueCell: {
     maxWidth: '250px',
@@ -425,19 +425,19 @@ const styles = {
     fontSize: '12px',
     fontWeight: '600',
     borderRadius: '4px',
-    border: '1px solid #ccc',
-    backgroundColor: '#fff',
+    border: '1px solid var(--border-default)',
+    backgroundColor: 'var(--surface-raised)',
     cursor: 'pointer',
-    color: '#c5221f',
+    color: 'var(--icon-text-rose)',
     transition: 'background-color 0.2s',
   },
   closedLabel: {
     fontSize: '13px',
-    color: '#777',
+    color: 'var(--text-muted)',
     fontStyle: 'italic',
   },
   workflowContainer: {
-    backgroundColor: '#fff',
+    backgroundColor: 'var(--surface-raised)',
     padding: '24px',
     borderRadius: '8px',
     boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)',
@@ -445,7 +445,7 @@ const styles = {
   workflowTitle: {
     fontSize: '14px',
     fontWeight: '600',
-    color: '#666',
+    color: 'var(--text-secondary)',
     margin: '0 0 16px 0',
     textTransform: 'uppercase',
     letterSpacing: '0.5px',
@@ -473,7 +473,7 @@ const styles = {
   },
   workflowDesc: {
     fontSize: '12px',
-    color: '#666',
+    color: 'var(--text-secondary)',
   },
   workflowArrow: {
     fontSize: '18px',

@@ -223,7 +223,7 @@ export default function VehicleForm({ onSave, onCancel, existingRegNumbers = [] 
 const styles = {
   formContainer: {
     padding: '24px',
-    backgroundColor: '#fff',
+    backgroundColor: 'var(--surface-raised)',
     borderRadius: '8px',
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
     maxWidth: '500px',
@@ -234,7 +234,7 @@ const styles = {
     margin: '0 0 20px 0',
     fontSize: '20px',
     fontWeight: '600',
-    color: '#333',
+    color: 'var(--text-primary)',
   },
   form: {
     display: 'flex',
@@ -249,31 +249,31 @@ const styles = {
   label: {
     fontSize: '14px',
     fontWeight: '500',
-    color: '#555',
+    color: 'var(--text-secondary)',
   },
   input: {
     padding: '10px 12px',
     fontSize: '14px',
     borderRadius: '6px',
-    border: '1px solid #ccc',
+    border: '1px solid var(--border-default)',
     outline: 'none',
     transition: 'border-color 0.2s',
   },
   inputError: {
     borderColor: '#d93025',
-    backgroundColor: '#fce8e6',
+    backgroundColor: 'var(--icon-bg-rose)',
   },
   select: {
     padding: '10px 12px',
     fontSize: '14px',
     borderRadius: '6px',
-    border: '1px solid #ccc',
-    backgroundColor: '#fff',
+    border: '1px solid var(--border-default)',
+    backgroundColor: 'var(--surface-raised)',
     outline: 'none',
   },
   errorText: {
     fontSize: '12px',
-    color: '#d93025',
+    color: 'var(--icon-text-rose)',
     marginTop: '2px',
   },
   actions: {
@@ -287,10 +287,10 @@ const styles = {
     fontSize: '14px',
     fontWeight: '500',
     borderRadius: '6px',
-    border: '1px solid #ccc',
-    backgroundColor: '#fff',
+    border: '1px solid var(--border-default)',
+    backgroundColor: 'var(--surface-raised)',
     cursor: 'pointer',
-    color: '#333',
+    color: 'var(--text-primary)',
     transition: 'background-color 0.2s',
   },
   submitBtn: {
@@ -299,8 +299,8 @@ const styles = {
     fontWeight: '500',
     borderRadius: '6px',
     border: 'none',
-    backgroundColor: '#1a73e8',
-    color: '#fff',
+    backgroundColor: 'var(--icon-text-emerald)',
+    color: 'var(--surface-raised)',
     cursor: 'pointer',
     transition: 'background-color 0.2s',
   }
