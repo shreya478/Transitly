@@ -1,2 +1,91 @@
 @import "tailwindcss";
 @source "../../feature";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
+  
+  --color-surface-base: var(--surface-base);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-overlay: var(--surface-overlay);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-default: var(--border-default);
+}
+
+@layer base {
+  :root {
+    /* Light Mode */
+    --surface-base: #f8fafc; /* slate-50 */
+    --surface-raised: #ffffff; /* white */
+    --surface-overlay: rgba(255, 255, 255, 0.8);
+    
+    --text-primary: #0f172a; /* slate-900 */
+    --text-secondary: #475569; /* slate-600 */
+    --text-muted: #94a3b8; /* slate-400 */
+    
+    --border-subtle: rgba(15, 23, 42, 0.05); /* slate-900/5 */
+    --border-default: rgba(15, 23, 42, 0.1); /* slate-900/10 */
+
+    --icon-bg-emerald: rgba(16, 185, 129, 0.1);
+    --icon-text-emerald: #059669; /* emerald-600 */
+    --icon-bg-cyan: rgba(6, 182, 212, 0.1);
+    --icon-text-cyan: #0891b2; /* cyan-600 */
+    --icon-bg-amber: rgba(245, 158, 11, 0.1);
+    --icon-text-amber: #d97706; /* amber-600 */
+    --icon-bg-violet: rgba(139, 92, 246, 0.1);
+    --icon-text-violet: #7c3aed; /* violet-600 */
+    --icon-bg-rose: rgba(244, 63, 94, 0.1);
+    --icon-text-rose: #e11d48; /* rose-600 */
+    --icon-bg-slate: rgba(100, 116, 139, 0.1);
+    --icon-text-slate: #475569; /* slate-600 */
+
+    --glass-border: rgba(0, 0, 0, 0.05);
+    --glass-highlight: rgba(255, 255, 255, 0.5);
+  }
+
+  .dark {
+    /* Dark Mode */
+    --surface-base: #0f172a; /* slate-900 */
+    --surface-raised: #1e293b; /* slate-800 */
+    --surface-overlay: rgba(15, 23, 42, 0.8); /* slate-900/80 */
+    
+    --text-primary: #f8fafc; /* slate-50 */
+    --text-secondary: #94a3b8; /* slate-400 */
+    --text-muted: #64748b; /* slate-500 */
+    
+    --border-subtle: rgba(255, 255, 255, 0.05); /* white/5 */
+    --border-default: rgba(255, 255, 255, 0.1); /* white/10 */
+
+    --icon-bg-emerald: rgba(16, 185, 129, 0.1);
+    --icon-text-emerald: #34d399; /* emerald-400 */
+    --icon-bg-cyan: rgba(6, 182, 212, 0.1);
+    --icon-text-cyan: #22d3ee; /* cyan-400 */
+    --icon-bg-amber: rgba(245, 158, 11, 0.1);
+    --icon-text-amber: #fbbf24; /* amber-400 */
+    --icon-bg-violet: rgba(139, 92, 246, 0.1);
+    --icon-text-violet: #a78bfa; /* violet-400 */
+    --icon-bg-rose: rgba(244, 63, 94, 0.1);
+    --icon-text-rose: #fb7185; /* rose-400 */
+    --icon-bg-slate: rgba(100, 116, 139, 0.1);
+    --icon-text-slate: #94a3b8; /* slate-400 */
+
+    --glass-border: rgba(255, 255, 255, 0.05);
+    --glass-highlight: rgba(255, 255, 255, 0.02);
+  }
+
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--surface-base);
+    color: var(--text-primary);
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+}

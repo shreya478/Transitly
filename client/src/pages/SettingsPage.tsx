@@ -1,188 +1,142 @@
-import React, { useState } from "react";
+import { useState } from 'react';
+import { useTheme } from '../ThemeContext';
 
-// ── Toggle component ───────────────────────────────────────────────────────
-function Toggle({
-  enabled,
-  onToggle,
-  disabled = false,
-}: {
-  enabled: boolean;
-  onToggle: () => void;
-  disabled?: boolean;
-}) {
-  return (
-    <button
-      type="button"
-      role="switch"
-      aria-checked={enabled}
-      disabled={disabled}
-      onClick={onToggle}
-      className={[
-        "relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:ring-offset-2 focus:ring-offset-slate-900",
-        enabled ? "bg-emerald-500" : "bg-slate-700",
-        disabled ? "cursor-not-allowed opacity-50" : "",
-      ].join(" ")}
-    >
-      <span
-        className={[
-          "pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow-lg ring-0 transition-transform duration-200",
-          enabled ? "translate-x-5" : "translate-x-0",
-        ].join(" ")}
-      />
-    </button>
-  );
-}
+export function SettingsPage() {
+  const { settings, updateSetting, toggleTheme, resetSettings } = useTheme();
+  const [feedbackMsg, setFeedbackMsg] = useState("");
 
-// ── Setting row ────────────────────────────────────────────────────────────
-function SettingRow({
-  title,
-  description,
-  children,
-}: {
-  title: string;
-  description: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="flex items-center justify-between rounded-xl border border-white/5 bg-slate-900/50 px-5 py-4">
-      <div className="min-w-0 pr-4">
-        <p className="text-sm font-medium text-slate-200">{title}</p>
-        <p className="text-xs text-slate-500 mt-0.5">{description}</p>
-      </div>
-      <div className="shrink-0">{children}</div>
-    </div>
-  );
-}
+  const handleResetData = () => {
+    resetSettings();
+    setFeedbackMsg("Settings reset to defaults.");
+    setTimeout(() => setFeedbackMsg(""), 3000);
+  };
 
-// ── Section wrapper ────────────────────────────────────────────────────────
-function SettingsSection({
-  title,
-  subtitle,
-  children,
-}: {
-  title: string;
-  subtitle: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <section>
-      <div className="overflow-hidden rounded-2xl border border-white/5 bg-slate-800/50 backdrop-blur-sm">
-        <div className="border-b border-white/5 px-6 py-4">
-          <h2 className="text-base font-semibold text-white">{title}</h2>
-          <p className="mt-0.5 text-xs text-slate-500">{subtitle}</p>
-        </div>
-        <div className="p-6 space-y-3">{children}</div>
-      </div>
-    </section>
-  );
-}
-
-// ── Page ──────────────────────────────────────────────────────────────────
-export default function SettingsPage() {
-  const [darkMode, setDarkMode] = useState(true);
-  const [compactSidebar, setCompactSidebar] = useState(false);
-  const [emailAlerts, setEmailAlerts] = useState(true);
-  const [pushNotifications, setPushNotifications] = useState(false);
-  const [autoRefresh, setAutoRefresh] = useState(true);
+  const handleClearCache = () => {
+    localStorage.clear();
+    setFeedbackMsg("Cache cleared. Reloading...");
+    setTimeout(() => window.location.reload(), 1500);
+  };
 
   return (
-    <div className="min-h-screen bg-slate-900 px-4 py-8 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-4xl space-y-8">
-
-        {/* ── Header ── */}
-        <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+    <div className="min-h-screen px-4 py-8 sm:px-8 lg:px-10">
+      <div className="mx-auto max-w-4xl space-y-10">
+        
+        <header>
+          <p className="font-sans text-[11px] font-bold uppercase tracking-[0.24em] text-text-muted">System</p>
+          <h1 className="font-display mt-2 text-3xl font-extrabold tracking-tight text-text-primary sm:text-4xl">
             Settings
           </h1>
-          <p className="mt-2 text-sm text-slate-400">
-            Configure your workspace preferences and system behavior.
-          </p>
-        </div>
+        </header>
 
-        {/* ── Appearance ── */}
-        <SettingsSection title="Appearance" subtitle="Customize the look and feel of your workspace">
-          <SettingRow
-            title="Dark Mode"
-            description="Use the dark interface theme across the application"
-          >
-            <Toggle enabled={darkMode} onToggle={() => setDarkMode(!darkMode)} />
-          </SettingRow>
-          <SettingRow
-            title="Compact Sidebar"
-            description="Reduce sidebar width to show only icons"
-          >
-            <Toggle enabled={compactSidebar} onToggle={() => setCompactSidebar(!compactSidebar)} />
-          </SettingRow>
-        </SettingsSection>
+        {feedbackMsg && (
+          <div className="rounded-[16px] bg-[var(--icon-bg-emerald)] p-4 text-sm font-semibold text-[var(--icon-text-emerald)]">
+            {feedbackMsg}
+          </div>
+        )}
 
-        {/* ── Notifications ── */}
-        <SettingsSection title="Notifications" subtitle="Control how you receive alerts and updates">
-          <SettingRow
-            title="Email Alerts"
-            description="Receive email notifications for critical fleet events"
-          >
-            <Toggle enabled={emailAlerts} onToggle={() => setEmailAlerts(!emailAlerts)} />
-          </SettingRow>
-          <SettingRow
-            title="Browser Push Notifications"
-            description="Get real-time push notifications in your browser"
-          >
-            <Toggle enabled={pushNotifications} onToggle={() => setPushNotifications(!pushNotifications)} />
-          </SettingRow>
-        </SettingsSection>
-
-        {/* ── Data & System ── */}
-        <SettingsSection title="Data & System" subtitle="System configuration and data source settings">
-          <SettingRow
-            title="Auto-Refresh Dashboard"
-            description="Automatically refresh KPI data every 30 seconds"
-          >
-            <Toggle enabled={autoRefresh} onToggle={() => setAutoRefresh(!autoRefresh)} />
-          </SettingRow>
-          <SettingRow
-            title="Data Mode"
-            description="Currently running with mock data for development"
-          >
-            <span className="rounded-full bg-amber-500/15 px-3 py-1 text-xs font-semibold text-amber-400 ring-1 ring-amber-500/30">
-              Mock Data
-            </span>
-          </SettingRow>
-          <SettingRow
-            title="API Endpoint"
-            description="Backend service URL for production data"
-          >
-            <span className="font-mono text-xs text-slate-500">
-              Not configured
-            </span>
-          </SettingRow>
-        </SettingsSection>
-
-        {/* ── Danger Zone ── */}
-        <section>
-          <div className="overflow-hidden rounded-2xl border border-red-500/20 bg-slate-800/50 backdrop-blur-sm">
-            <div className="border-b border-red-500/10 px-6 py-4">
-              <h2 className="text-base font-semibold text-red-400">Danger Zone</h2>
-              <p className="mt-0.5 text-xs text-slate-500">Irreversible actions — proceed with caution</p>
+        {/* Appearance Settings */}
+        <section className="overflow-hidden rounded-[24px] border border-border-default bg-surface-raised shadow-sm">
+          <div className="border-b border-border-default px-7 py-5">
+            <h2 className="font-display text-lg font-bold text-text-primary">Appearance</h2>
+            <p className="mt-1 text-xs font-medium text-text-muted">Customize how the application looks</p>
+          </div>
+          
+          <div className="divide-y divide-border-subtle">
+            <div className="flex items-center justify-between px-7 py-5">
+              <div>
+                <h3 className="text-sm font-semibold text-text-primary">Dark Mode</h3>
+                <p className="mt-1 text-xs font-medium text-text-muted">Switch between light and dark themes</p>
+              </div>
+              <button 
+                onClick={toggleTheme}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--icon-text-emerald)] focus:ring-offset-2 focus:ring-offset-surface-raised ${settings.darkMode ? 'bg-[var(--icon-text-emerald)]' : 'bg-border-subtle'}`}
+              >
+                <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${settings.darkMode ? 'translate-x-6' : 'translate-x-1'}`} />
+              </button>
             </div>
-            <div className="p-6 space-y-3">
-              <div className="flex items-center justify-between rounded-xl border border-red-500/10 bg-slate-900/50 px-5 py-4">
-                <div>
-                  <p className="text-sm font-medium text-slate-200">Reset All Mock Data</p>
-                  <p className="text-xs text-slate-500">Restore all mock data to factory defaults</p>
-                </div>
-                <button className="rounded-lg bg-red-500/10 px-4 py-2 text-xs font-semibold text-red-400 ring-1 ring-red-500/20 transition-colors hover:bg-red-500/20 hover:text-red-300">
-                  Reset Data
-                </button>
+
+            <div className="flex items-center justify-between px-7 py-5">
+              <div>
+                <h3 className="text-sm font-semibold text-text-primary">Compact Sidebar</h3>
+                <p className="mt-1 text-xs font-medium text-text-muted">Reduce sidebar width to show icons only</p>
               </div>
-              <div className="flex items-center justify-between rounded-xl border border-red-500/10 bg-slate-900/50 px-5 py-4">
-                <div>
-                  <p className="text-sm font-medium text-slate-200">Clear Local Cache</p>
-                  <p className="text-xs text-slate-500">Remove all cached data and preferences</p>
-                </div>
-                <button className="rounded-lg bg-red-500/10 px-4 py-2 text-xs font-semibold text-red-400 ring-1 ring-red-500/20 transition-colors hover:bg-red-500/20 hover:text-red-300">
-                  Clear Cache
-                </button>
+              <button 
+                onClick={() => updateSetting('compactSidebar', !settings.compactSidebar)}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--icon-text-emerald)] focus:ring-offset-2 focus:ring-offset-surface-raised ${settings.compactSidebar ? 'bg-[var(--icon-text-emerald)]' : 'bg-border-subtle'}`}
+              >
+                <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${settings.compactSidebar ? 'translate-x-6' : 'translate-x-1'}`} />
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* Notifications */}
+        <section className="overflow-hidden rounded-[24px] border border-border-default bg-surface-raised shadow-sm">
+          <div className="border-b border-border-default px-7 py-5">
+            <h2 className="font-display text-lg font-bold text-text-primary">Notifications</h2>
+            <p className="mt-1 text-xs font-medium text-text-muted">Manage your alerts and communications</p>
+          </div>
+          
+          <div className="divide-y divide-border-subtle">
+            <div className="flex items-center justify-between px-7 py-5">
+              <div>
+                <h3 className="text-sm font-semibold text-text-primary">Email Alerts</h3>
+                <p className="mt-1 text-xs font-medium text-text-muted">Receive critical alerts via email</p>
               </div>
+              <button 
+                onClick={() => updateSetting('emailAlerts', !settings.emailAlerts)}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--icon-text-emerald)] focus:ring-offset-2 focus:ring-offset-surface-raised ${settings.emailAlerts ? 'bg-[var(--icon-text-emerald)]' : 'bg-border-subtle'}`}
+              >
+                <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${settings.emailAlerts ? 'translate-x-6' : 'translate-x-1'}`} />
+              </button>
+            </div>
+
+            <div className="flex items-center justify-between px-7 py-5">
+              <div>
+                <h3 className="text-sm font-semibold text-text-primary">Push Notifications</h3>
+                <p className="mt-1 text-xs font-medium text-text-muted">Receive browser push notifications</p>
+              </div>
+              <button 
+                onClick={() => updateSetting('pushNotifications', !settings.pushNotifications)}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--icon-text-emerald)] focus:ring-offset-2 focus:ring-offset-surface-raised ${settings.pushNotifications ? 'bg-[var(--icon-text-emerald)]' : 'bg-border-subtle'}`}
+              >
+                <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${settings.pushNotifications ? 'translate-x-6' : 'translate-x-1'}`} />
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* Advanced */}
+        <section className="overflow-hidden rounded-[24px] border border-[var(--icon-bg-rose)] bg-[var(--icon-bg-rose)]/10 shadow-sm">
+          <div className="border-b border-[var(--icon-bg-rose)] px-7 py-5">
+            <h2 className="font-display text-lg font-bold text-[var(--icon-text-rose)]">Advanced Settings</h2>
+            <p className="mt-1 text-xs font-medium text-[var(--icon-text-rose)]/70">Proceed with caution</p>
+          </div>
+          
+          <div className="divide-y divide-[var(--icon-bg-rose)]">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-7 py-5">
+              <div>
+                <h3 className="text-sm font-semibold text-text-primary">Reset Settings Data</h3>
+                <p className="mt-1 text-xs font-medium text-text-muted">Reset all preferences to default values.</p>
+              </div>
+              <button 
+                onClick={handleResetData}
+                className="shrink-0 rounded-[12px] border border-[var(--icon-bg-rose)] bg-transparent px-4 py-2 text-sm font-semibold text-[var(--icon-text-rose)] transition-colors hover:bg-[var(--icon-bg-rose)]"
+              >
+                Reset Defaults
+              </button>
+            </div>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-7 py-5">
+              <div>
+                <h3 className="text-sm font-semibold text-text-primary">Clear Browser Cache</h3>
+                <p className="mt-1 text-xs font-medium text-text-muted">Clears all local storage and reloads the app.</p>
+              </div>
+              <button 
+                onClick={handleClearCache}
+                className="shrink-0 rounded-[12px] bg-[var(--icon-bg-rose)] px-4 py-2 text-sm font-semibold text-[var(--icon-text-rose)] transition-colors hover:bg-[var(--icon-text-rose)] hover:text-white"
+              >
+                Clear Cache
+              </button>
             </div>
           </div>
         </section>
