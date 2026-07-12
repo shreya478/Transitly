@@ -1,40 +1,37 @@
-export type VehicleStatus = "Available" | "On Trip" | "In Shop" | "Retired";
+import { getMockVehicles } from './vehicleService';
+import { getMockTrips } from './tripService';
+import { getMockDrivers } from './driverService';
 
-export interface Vehicle {
-  id: string;
-  plateNumber: string;
-  status: VehicleStatus;
-  model: string;
-  year: number;
-}
+export const getMockKPIs = () => {
+  // Add defensive fallbacks in case Copilot's files return undefined
+  const vehicles = getMockVehicles() || [];
+  const trips = getMockTrips() || [];
+  const drivers = getMockDrivers() || [];
 
-export interface Trip {
-  id: string;
-  vehicleId: string;
-  routeName: string;
-  status: "Pending" | "Active" | "Completed" | "Cancelled";
-  origin: string;
-  destination: string;
-  startTime: string;
-  endTime?: string;
-}
+  const totalVehicles = vehicles.length;
+  const activeVehicles = vehicles.filter(v => v.status === 'On Trip').length;
+  const availableVehicles = vehicles.filter(v => v.status === 'Available').length;
+  const maintenanceVehicles = vehicles.filter(v => v.status === 'In Shop').length;
+  const retiredVehicles = vehicles.filter(v => v.status === 'Retired').length;
 
-export interface DashboardKpis {
-  activeVehicles: number;
-  availableVehicles: number;
-  vehiclesInMaintenance: number;
-  activeTrips: number;
-  pendingTrips: number;
-  fleetUtilization: number;
-}
+  const activeTrips = trips.filter(t => t.status === 'Dispatched').length;
+  const pendingTrips = trips.filter(t => t.status === 'Draft').length;
+  
+  const driversOnDuty = drivers.filter(d => d.status === 'On Trip').length;
 
-export function getMockKPIs(): DashboardKpis {
+  const validFleetSize = totalVehicles - retiredVehicles;
+  const fleetUtilizationPercent = validFleetSize > 0 
+    ? (activeVehicles / validFleetSize) * 100 
+    : 0;
+
   return {
-    activeVehicles: 42,
-    availableVehicles: 18,
-    vehiclesInMaintenance: 5,
-    activeTrips: 27,
-    pendingTrips: 9,
-    fleetUtilization: 70,
+    totalVehicles,
+    activeVehicles,
+    availableVehicles,
+    maintenanceVehicles,
+    activeTrips,
+    pendingTrips,
+    driversOnDuty,
+    fleetUtilizationPercent: Math.round(fleetUtilizationPercent)
   };
-}
+};

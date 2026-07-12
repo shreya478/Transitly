@@ -1,25 +1,19 @@
-import type { ReactNode } from "react";
+import React from 'react';
 
 interface KpiCardProps {
   title: string;
   value: string | number;
-  icon: ReactNode;
 }
 
-export function KpiCard({ title, value, icon }: KpiCardProps) {
+export const KpiCard: React.FC<KpiCardProps> = ({ title, value }) => {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md">
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <p className="text-sm font-medium text-slate-500">{title}</p>
-          <p className="mt-2 text-3xl font-semibold tracking-tight text-slate-900">
-            {value}
-          </p>
-        </div>
-        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100 text-slate-700">
-          {icon}
-        </div>
-      </div>
+    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700">
+      <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">
+        {title}
+      </h3>
+      <p className="text-3xl font-bold text-gray-900 dark:text-white">
+        {value}
+      </p>
     </div>
   );
-}
+};
