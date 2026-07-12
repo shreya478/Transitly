@@ -13,8 +13,8 @@ import FuelPage from '../../feature/crud-ui/fuel-page';
 import MaintenancePage from '../../feature/crud-ui/maintenance-page';
 
 // App pages
-import ProfilePage from './pages/ProfilePage';
-import SettingsPage from './pages/SettingsPage';
+import { ProfilePage } from './pages/ProfilePage';
+import { SettingsPage } from './pages/SettingsPage';
 
 const router = createBrowserRouter([
   {
