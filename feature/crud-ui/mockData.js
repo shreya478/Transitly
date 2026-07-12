@@ -117,3 +117,87 @@ export const mockDrivers = [
     status: "On Trip"
   }
 ];
+
+export const mockFuelLogs = [
+  {
+    vehicleRegistrationNumber: "TX-9988-A",
+    date: "2026-07-01",
+    liters: 65,
+    cost: 95.50
+  },
+  {
+    vehicleRegistrationNumber: "TX-4411-B",
+    date: "2026-07-03",
+    liters: 80,
+    cost: 120.00
+  },
+  {
+    vehicleRegistrationNumber: "TX-7722-C",
+    date: "2026-07-04",
+    liters: 120,
+    cost: 185.00
+  },
+  {
+    vehicleRegistrationNumber: "TX-1122-E",
+    date: "2026-07-08",
+    liters: 55,
+    cost: 82.25
+  },
+  {
+    vehicleRegistrationNumber: "TX-8833-F",
+    date: "2026-07-10",
+    liters: 150,
+    cost: 230.00
+  },
+  {
+    vehicleRegistrationNumber: "TX-9988-A",
+    date: "2026-07-11",
+    liters: 70,
+    cost: 104.50
+  }
+];
+
+export const mockExpenses = [
+  {
+    vehicleRegistrationNumber: "TX-4411-B",
+    type: "Toll",
+    date: "2026-07-02",
+    amount: 15.00,
+    notes: "Expressway toll"
+  },
+  {
+    vehicleRegistrationNumber: "TX-7722-C",
+    type: "Maintenance",
+    date: "2026-07-05",
+    amount: 350.00,
+    notes: "Brake pad replacement"
+  },
+  {
+    vehicleRegistrationNumber: "TX-1122-E",
+    type: "Parking",
+    date: "2026-07-07",
+    amount: 25.00,
+    notes: "Overnight depot parking"
+  },
+  {
+    vehicleRegistrationNumber: "TX-9988-A",
+    type: "Toll",
+    date: "2026-07-09",
+    amount: 12.50,
+    notes: "State highway toll"
+  },
+  {
+    vehicleRegistrationNumber: "TX-8833-F",
+    type: "Maintenance",
+    date: "2026-07-10",
+    amount: 450.00,
+    notes: "Scheduled 60k service"
+  },
+  {
+    vehicleRegistrationNumber: "TX-5566-D",
+    type: "Parking",
+    date: "2026-07-11",
+    amount: 20.00,
+    notes: "Client site parking fee"
+  }
+];
