@@ -201,3 +201,54 @@ export const mockExpenses = [
     notes: "Client site parking fee"
   }
 ];
+
+export const mockMaintenanceRecords = [
+  {
+    id: "m-1",
+    vehicleRegistrationNumber: "TX-9988-A",
+    issueDescription: "Oil change and filter replacement",
+    priority: "Low",
+    status: "Resolved",
+    dateRaised: "2026-07-01"
+  },
+  {
+    id: "m-2",
+    vehicleRegistrationNumber: "TX-4411-B",
+    issueDescription: "Clutch slipping on shifts",
+    priority: "High",
+    status: "In Progress",
+    dateRaised: "2026-07-08"
+  },
+  {
+    id: "m-3",
+    vehicleRegistrationNumber: "TX-7722-C",
+    issueDescription: "Engine check light blinking",
+    priority: "High",
+    status: "Pending",
+    dateRaised: "2026-07-11"
+  },
+  {
+    id: "m-4",
+    vehicleRegistrationNumber: "TX-5566-D",
+    issueDescription: "Rear taillight bulb burned out",
+    priority: "Low",
+    status: "Pending",
+    dateRaised: "2026-07-12"
+  },
+  {
+    id: "m-5",
+    vehicleRegistrationNumber: "TX-1122-E",
+    issueDescription: "Air conditioning system recharge",
+    priority: "Medium",
+    status: "Resolved",
+    dateRaised: "2026-07-05"
+  },
+  {
+    id: "m-6",
+    vehicleRegistrationNumber: "TX-8833-F",
+    issueDescription: "Tire rotation and alignment check",
+    priority: "Medium",
+    status: "In Progress",
+    dateRaised: "2026-07-09"
+  }
+];
